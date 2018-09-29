@@ -1,0 +1,46 @@
+﻿@model EverythingListApp.Models.IndexViewModel
+@{
+    ViewBag.Title = "Manage";
+}
+
+<section class="container" style="margin-top:6%;margin-bottom:17%;">
+    <h2>&nbsp;</h2>
+    <div class="row">
+        <div class="row">
+            <div class="col-lg-10 col-md-10 col-sm-10 col-md-offset-1">
+                <h3>@ViewBag.Title - Account</h3>
+            </div>
+        </div>
+        <h2>&nbsp;</h2>
+
+        <div class="row">
+            <div class="col-lg-10 col-md-10 col-sm-10 col-md-offset-1">
+                <p class="text-success">@ViewBag.StatusMessage</p>
+                <h4>Change your account settings</h4>
+                <hr />
+
+                <div class="row">
+                    <div class="col-md-4">Password:</div>
+                    <div class="col-md-4">
+                        [
+                        @if (Model.HasPassword)
+                        {
+                            @Html.ActionLink("Change your password", "ChangePassword")
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Create", "SetPassword")
+                        }
+                        ]
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">External Logins:</div>
+                    <div class="col-md-4">
+                        @Html.ActionLink("Manage", "ManageLogins")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,72 @@
+﻿@using EverythingListApp.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+}
+<h2>&nbsp;</h2>
+<section class="container" id="more">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <section id="socialLoginForm">
+                @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+            </section>
+        </div>
+    </div>
+    <br/><br />
+    <div class="row">
+        <div class="col-lg-10 col-md-10 col-sm-10 col-md-offset-1">
+            <!-- Nav tabs -->
+            <div class="">
+                <ul class="nav nav-tabs tm-white-bg">
+                    <li class="active">
+                        <a href="@Url.Action("Login","Account")">Login</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Register","Account")">Register</a>
+                    </li>
+                   
+                </ul>
+               
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active tm-white-bg" id="hotel">
+                        <div class="tm-search-box effect2">
+                            <form action="/Account/Login" method="post" class="hotel-search-form">
+                                <h2>&nbsp;</h2>
+                                @Html.AntiForgeryToken()
+                                <div class="tm-form-inner">
+                                    <div class="form-group">
+                                        @Html.ValidationSummary("", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Enter Email" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Enter Password" })
+                                    </div>
+                                    <div class="form-group">
+                                        @*<input type="checkbox" id="RememberMe" name="Rememberme" value="false">*@
+                                        @Html.CheckBoxFor(m => m.RememberMe)
+                                        <input name="RememberMe" type="hidden" value="true">
+                                        <label for="RememberMe">Remember me?</label>
+                                    </div>
+                                </div>
+                                <h2>&nbsp;</h2>
+                                <div class="form-group tm-yellow-gradient-bg text-center">
+                                    <button type="submit" name="submit" class="tm-yellow-btn">Login</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</section>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
